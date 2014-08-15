@@ -2,6 +2,13 @@
 // rrcan show and off
 function userRoleEvent(selectedIndex){
     if(selectedIndex == 1){ //authorized user
+
+        var ele = document.getElementById("rrcanSUP");
+        if(ele.hasAttribute("title") == false){
+            var info="RRC Account Number(RRCAN) is a payment source created by either PIs or the lab managers to allowed dispensing of funds to purchase various of services offered by RRC facilities. Check with your PI or lab manager if you don't know what RRCAN to use.";
+
+            ele.setAttribute("title", info);
+        }
         document.getElementById("divRRCAN").style.display = "block"; 
     }else if(selectedIndex == 2){ //primary account holder
         document.getElementById("divRRCAN").style.display = "none"; 
@@ -15,12 +22,12 @@ function validation(){
     //check if email format is valid
     if(this.id == "email"){
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;        
-        if(re.test(value) == false){
-            check.innerHTML = "Email address invalid!";
-            return;
-        }else{
-            check.innerHTML = "";
-        }
+            if(re.test(value) == false){
+                check.innerHTML = "Email address invalid!";
+                return;
+            }else{
+                check.innerHTML = "";
+            }
         //AJax
     }else if(this.id.match(/name$/)){
         //name file can't be empty, we don't check middle name here
@@ -82,7 +89,8 @@ function information(){
         check.innerHTML = "Password length should at least be 8."
     }else if(this.id == "rrcan"){
         var info="RRC Account Number(RRCAN) is a payment source created by either PIs or the lab managers to allowed dispensing of funds to purchase various of services offered by RRC facilities. Check with your PI or lab manager if you don't know what RRCAN to use.";
-        this.setAttribute("title", info);
+        //var ele = document.getElementsByTagName("sup"));
+        //ele[0].setAttribute("title", info);
     }
 }
 
