@@ -5,6 +5,10 @@
         <link rel="stylesheet" type="text/css" href="style.css"></link>
     </head>
     <body>
+    	<div id="header">
+    	<label class="headerRRC">Research Resource Center</label>
+    	<label class="headerMydata">Mydata Server</label>
+    	</div>
         <div id="outer">
             <form class="formSets">
                 <fieldset id="userField">
@@ -15,17 +19,17 @@
                         <label for="email" id="emailCheck" class="checkInfo"></label>
                     </div>
                     <div>
-                        <label for="firstname" class="info">Firstname</label>
+                        <label for="firstname" class="info">First name</label>
                         <input id="firstname" type="text" placeholder="Firstname"></input>
                         <label id="firstnameCheck" class="checkInfo"></label>
                     </div>
                     <div>
-                        <label for="middlename" class="info">Middlename</label>
+                        <label for="middlename" class="info">Middle name</label>
                         <input id="middlename" type="text" placeholder="Middlename"></input>
                         <label class="checkInfo"></label>
                     </div>
                     <div>
-                        <label for="lastname" class="info">Lastname</label>
+                        <label for="lastname" class="info">Last name</label>
                         <input id="lastname" type="text" placeholder="Lastname"></input>
                         <label id="lastnameCheck" class="checkInfo"></label>
                     </div>
@@ -38,7 +42,7 @@
                         <label id="passwordCheck" class="checkInfo"></label>
                     </div>
                     <div>
-                        <label for="passwordcfm" class="info">Password comfirm</label>
+                        <label for="passwordcfm" class="info">Password confirm</label>
                         <input id="passwordcmf" type="password" placeholder="Password comfirm"></input>
                         <label id="passwordcmfCheck" class="checkInfo"></label>
                     </div>
@@ -79,13 +83,17 @@
                     </div>
 
                 </fieldset>
-                <div>
-                    <!-- <label for="cb" class="checkboxSets"> -->
-                        <!-- <input id="cb" type="checkbox"> I've read the terms and conditions</input> -->
-                        <!-- </label> -->
+                <div class="checkboxSets">
+                    <label for="cb"> 
+                        <input id="cb" type="checkbox"> I've read the <a href="#">terms and conditions</a></input>
+                        </label>
                     <button type="submit" class="submitButton">Submit</button>
                 </div>
             </form>
+        </div>
+        <div id="footer">
+        <a href="#">Resource Research Center</a>
+        <a href="#">University of Illinois at Chicago</a>
         </div>
         <script src="script.js"></script>
     </body>
