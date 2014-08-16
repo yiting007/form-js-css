@@ -1,3 +1,11 @@
+var valid={email: false, firstname: false, lastname: false, password: false, passwordcmf: false, phone: false, university: false, department: false, userRole: false, rrcan: false};
+
+// phone number format
+function phoneFormat(phone){
+	var phone = phone.replace(/[^0-9]/g, '');
+	phone = phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1)-$2-$3");
+	return phone;
+}
 
 // rrcan show and off
 function userRoleEvent(selectedIndex){
@@ -15,6 +23,10 @@ function userRoleEvent(selectedIndex){
     }
 }
 
+function updateValid(field, va){
+	valid[field] = va;
+}
+
 // form validation
 function validation(){
     var check = document.getElementById(this.id+"Check");
@@ -24,61 +36,107 @@ function validation(){
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;        
             if(re.test(value) == false){
                 check.innerHTML = "Email address invalid!";
+                updateValid(this.id, false);
                 return;
             }else{
                 check.innerHTML = "";
+                updateValid(this.id, true);  
             }
         //AJax
-    }else if(this.id.match(/name$/)){
+    }else if(this.id == "firstname"){
         //name file can't be empty, we don't check middle name here
         if(value == ""){
-            check.innerHTML = "Name cannot be empty!";
+            check.innerHTML = "First name cannot be empty!";
+            updateValid(this.id, false);
         }else{
             check.innerHTML = "";
+            updateValid(this.id, true);
+            
         }
+    }else if(this.id == "lastname"){
+            //name file can't be empty, we don't check middle name here
+            if(value == ""){
+                check.innerHTML = "Last name cannot be empty!";
+                updateValid(this.id, false);
+                
+            }else{
+                check.innerHTML = "";
+                updateValid(this.id, true);
+                
+            }
     }else if(this.id == "phone"){
         //phone number
         var re = /^\d{10}$/;
         if(re.test(value) == false){
             check.innerHTML = "Invalid phone number!";
+            updateValid(this.id, false);
         }else{
             check.innerHTML = "";
+            this.value = phoneFormat(value);
+            updateValid(this.id, true);
         }
+    }else if(this.id == "university"){
+            //University/Company
+            if(value == ""){
+                check.innerHTML = "University/Company cannot be empty!";
+                updateValid(this.id, false);
+            }else{
+                check.innerHTML = "";
+                updateValid(this.id, true);
+            }
+    }else if(this.id == "department"){
+            //Department
+            if(value == ""){
+                check.innerHTML = "Department cannot be empty!";
+                updateValid(this.id, false);
+            }else{
+                check.innerHTML = "";
+                updateValid(this.id, true);
+            }
     }else if(this.id == "password"){
         //password length should be greater or equal to 8
         if(value.length < 8){
             check.innerHTML = "Password too short!";
+            updateValid(this.id, false);
         }else{
             check.innerHTML = "";
+            updateValid(this.id, true);
         }
     }else if(this.id == "passwordcmf"){
         //passwords should be the same
         var pwd = document.getElementById("password");
         if(pwd.value != value || value.length < 8){
             check.innerHTML = "Password does not match!";
+            updateValid(this.id, false);
         }else{
             check.innerHTML = "";
+            updateValid(this.id, true);
         }
     }else if(this.id == "userRole"){
         //must select a value 
         if(value == ""){
             check.innerHTML = "User role invalid!";
+            updateValid(this.id, false);
         }else{
             check.innerHTML = "";
+            updateValid(this.id, true);
         }
     }else if(this.id == "rrcan"){
         //first check length
         if(value.length < 5){
             check.innerHTML = "RRCAN invalid";
+            updateValid(this.id, false);
             return;
         }
         check.innerHTML = "";
+        updateValid(this.id, true);
         //AJax
     }else{
         //do nothing
     }   
 }
 
+//some field messages
 function information(){
     var check = document.getElementById(this.id+"Check");
     var value = this.value;
@@ -89,9 +147,29 @@ function information(){
         check.innerHTML = "Password length should at least be 8."
     }else if(this.id == "rrcan"){
         var info="RRC Account Number(RRCAN) is a payment source created by either PIs or the lab managers to allowed dispensing of funds to purchase various of services offered by RRC facilities. Check with your PI or lab manager if you don't know what RRCAN to use.";
-        //var ele = document.getElementsByTagName("sup"));
-        //ele[0].setAttribute("title", info);
     }
+}
+
+//submit event
+function submitForm(){
+	var error = false;
+	for(var k in valid){
+		if(valid[k] == false){
+			var ele = document.getElementById(k);
+			ele.validate();
+			error = true;
+			break;
+		}
+	}
+	if(error == false){
+		var check = document.getElementById("cb");
+		if(check.checked == true){
+			alert("done");
+			//submit
+		}else{
+			alert("Cannot submit, please read the terms and conditions.");
+		}
+	}
 }
 
 // as soon as the page is loaded...
@@ -102,10 +180,15 @@ window.onload = function(){
         inputs[i].onfocus = information;
         //inputs[i].onkeyup= validation;
         inputs[i].onblur = validation;
+        inputs[i].validate = validation;
     }
     //all selects, for now we only have one
     var selects = document.getElementsByTagName("select");
     selects[0].onblur = validation;
+    
+    //submit button
+    var submitBtn = document.getElementsByClassName("submitButton");
+    submitBtn[0].onclick = submitForm;
 }
 
 
