@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Mydata Registration</title>
+        <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="style.css"></link>
+
+    </head>
+    <body>
+    	<div id="header">
+    	<label class="headerRRC">Research Resource Center</label>
+    	<label class="headerMydata">Mydata Server</label>
+    	</div>
+        <div id="outer">
+            <form class="formSets" onsubmit="return submitForm()">
+                <fieldset id="userField">
+                    <legend>User Information</legend>
+                    <div>
+                        <label for="email" class="info">Email</label>
+                        <input id="email" type="text" placeholder="Email Address"></input>
+                        <label for="email" id="emailCheck" class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="firstname" class="info">First name</label>
+                        <input id="firstname" type="text" placeholder="Firstname"></input>
+                        <label id="firstnameCheck" class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="middlename" class="info">Middle name</label>
+                        <input id="middlename" type="text" placeholder="Middlename"></input>
+                        <label class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="lastname" class="info">Last name</label>
+                        <input id="lastname" type="text" placeholder="Lastname"></input>
+                        <label id="lastnameCheck" class="checkInfo"></label>
+                    </div>
+                </fieldset>    
+                <fieldset id="pwdField">
+                    <legend>Credential</legend>
+                    <div>
+                        <label for="password" class="info">Password</label>
+                        <input id="password" type="password" placeholder="Password"></input>
+                        <label id="passwordCheck" class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="passwordcfm" class="info">Password confirm</label>
+                        <input id="passwordcmf" type="password" placeholder="Password comfirm"></input>
+                        <label id="passwordcmfCheck" class="checkInfo"></label>
+                    </div>
+                </fieldset>
+                <fieldset id="supField">
+                    <legend>Supporting Information</legend>
+                    <div>
+                        <label for="phone" class="info">Phone number</label>
+                        <input id="phone" type="text" placeholder="(xxx)-xxx-xxxx"></input>
+                        <label id="phoneCheck" class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="university" class="info">University/Company</label>
+                        <input id="university" type="text" placeholder="University/Company"></input>
+                        <label id="universityCheck" class="checkInfo"></label>
+                    </div>
+                    <div>
+                        <label for="department" class="info">Department</label>
+                        <input id="department" type="text" placeholder="Department"></input>
+                        <label id="departmentCheck" class="checkInfo"></label>
+                    </div>
+                </fieldset>
+                <fieldset id="acctField">
+                    <legend>Account</legend>
+                    <div>
+                        <label for="userRole" class="info">Role<sup id="roleSUP">?</sup></label>
+                        <select id="userRole">
+                            <option style="display:none;"></option>
+                            <option>Authorized User</option>
+                            <option>Primary Account Holder</option>
+                        </select>
+                        <label id="userRoleCheck" class="checkInfo"></label>
+                    </div>
+                    <div id="divRRCAN">
+                        <label for="rrcan" class="info">RRCAN<sup id="rrcanSUP">?</sup></label>
+                        <input id="rrcan" type="text" placeholder="RRCAN"></input>
+                        <label id="rrcanCheck", class="checkInfo"></label>
+                    </div>
+                </fieldset>
+                <div class="checkboxSets">
+                    <label for="cb"> 
+                        <input id="cb" type="checkbox"> I've read the <a href="#">terms and conditions</a></input>
+                        </label>
+                    <button id = "submit" type="submit" class="submitButton">Submit</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div id="footer">
+        <a href="#">Resource Research Center</a>
+        <a href="#">University of Illinois at Chicago</a>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
